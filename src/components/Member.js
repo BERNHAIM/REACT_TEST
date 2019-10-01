@@ -9,7 +9,9 @@ class Member extends Component {
     componentDidMount(){
 
         const { number, MemberActions } = this.props;
-        MemberActions.getMember();
+        MemberActions.getMember().then(res => {
+            console.log(res)
+        });
     }
 
     render(){

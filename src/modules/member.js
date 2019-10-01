@@ -5,7 +5,8 @@ import { FETCH_MEMBER_INFO } from '../constants/action_types';
 export const fetch = () => ({ type: FETCH_MEMBER_INFO });
 
 var config = {
-    headers: {'Access-Control-Allow-Origin': '*'}
+    headers: {'Access-Control-Allow-Origin': '*'},
+    retry: { retries: 3 }
 };
 
   
@@ -18,6 +19,16 @@ const initialState = {
 };
 
 function getMemberAPI() {
+    axios.interceptors.response.use(response => response, error => {
+        const status = error.response ? error.response.status : null
+        console.log(error)
+        if (status === 500) {
+    
+            return axios.request(error.config);
+        }
+    
+        return Promise.reject(error);
+    })
     return axios.get('http://localhost:8080/members',config)
 }
 
