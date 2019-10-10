@@ -1,22 +1,43 @@
-.App {
+@import url(https://fonts.googleapis.com/css?family=Lato);
+body {
+  font-family: 'Lato', sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+ul {
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  margin-top: 25px;
+  margin-left: -150px;
+}
+
+li {
+  position: relative;
+  display: block;
+  border: 1px solid hotpink;
+  margin-bottom: 5px;
+  padding: 10px;
   text-align: center;
+  text-transform: uppercase;
+  -webkit-animation: fadeIn 0.8s linear;
+          animation: fadeIn 0.8s linear;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
 }
 
-.App-logo {
-  height: 40vmin;
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    top: 100px;
+  }
+  75% {
+    opacity: 0.5;
+    top: 0px;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -4,47 +4,39 @@ import Info from './components/Info';
 import Member from './components/Member';
 import SimpleMap from './components/SimpleMap';
 
-class App extends React.Component {
-  constructor() {
-    super();
+import './App.css';
 
-    this.onDrawing = this.onDrawing.bind(this)
-  }
+// 이 컴포넌트는 동적으로 불러옵니다
+const OtherComponent = React.lazy(() => import('./components/Member'));
+const Spinner = () => {
+  return(
+    <h1>TEST</h1>
+  )
+}
 
-  onDrawing() {
-    const map = window.google.maps.Map(document.querySelector("#map"));
+const style = {
 
-    const google = window.google
-    var drawingManager = new google.maps.drawing.DrawingManager({
-      drawingMode: google.maps.drawing.OverlayType.MARKER,
-      drawingControl: true,
-      drawingControlOptions: {
-        position: google.maps.ControlPosition.TOP_CENTER,
-        drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-      },
-      markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-      circleOptions: {
-        fillColor: '#ffff00',
-        fillOpacity: 1,
-        strokeWeight: 5,
-        clickable: false,
-        editable: true,
-        zIndex: 1
-      }
-    });
-    console.log(drawingManager)
-    //drawingManager.setMap(map);
-  }
+  transition : "all 0.4s ease-out",
+  backgroundColor : "red",
+  animation: "fadeIn 0.5s linear"
+}
+function App() {
+  // return (
+  //   // Displays <Spinner> until OtherComponent loads
+  //   <React.Suspense fallback={<Spinner />}>
+  //     <div>
+  //       <OtherComponent />
+  //     </div>
+  //   </React.Suspense>
+  // );
 
-  render() {
-    return (
-      <div>
-        {/* <button onClick={this.onDrawing}>TEST</button>
-        <SimpleMap /> */}
-        <Member/>
-      </div>
-    )
-  }
-};
+  return (
+    <div style={style}>
+      <ul onClick={(e)=>console.log(e.currentTarget)}> 
+        <li> <a href test="test">test1</a></li></ul>
+    </div>
+   
+  )
+}
 
 export default App;
